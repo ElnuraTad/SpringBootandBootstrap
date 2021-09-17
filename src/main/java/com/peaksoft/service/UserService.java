@@ -1,6 +1,6 @@
-package jam.workspace.service;
+package com.peaksoft.service;
 
-import jam.workspace.model.User;
+import com.peaksoft.model.User;
 
 import java.util.List;
 

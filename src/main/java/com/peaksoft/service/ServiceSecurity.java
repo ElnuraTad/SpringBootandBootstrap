@@ -1,8 +1,7 @@
-package jam.workspace.service;
+package com.peaksoft.service;
 
-import jam.workspace.dao.UserDao;
-import jam.workspace.model.Role;
-import jam.workspace.model.User;
+import com.peaksoft.model.Role;
+import com.peaksoft.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

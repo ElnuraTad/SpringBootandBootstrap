@@ -1,11 +1,11 @@
-package jam.workspace.model;
+package com.peaksoft.model;
 
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roles1")
+@Table(name = "roles")
 public class Role implements GrantedAuthority {
 
     @Id

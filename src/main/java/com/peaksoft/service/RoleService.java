@@ -1,7 +1,6 @@
-package jam.workspace.service;
+package com.peaksoft.service;
 
-import jam.workspace.model.Role;
-import org.springframework.stereotype.Service;
+import com.peaksoft.model.Role;
 
 import java.util.List;
 

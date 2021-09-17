@@ -1,4 +1,4 @@
-package jam.workspace.config;
+package com.peaksoft.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

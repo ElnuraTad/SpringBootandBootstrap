@@ -1,20 +1,73 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>All Users</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>-->
 </head>
 <body>
-<table>
+<!--Navigation bar-->
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Admin</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--Log out-->
+    <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!--Main container-->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="list-group">
+                <a href="/admin" class="list-group-item active list-group-item-action">Admin</a>
+                <a href="/user" class="list-group-item list-group-item-action">User</a>
+            </div>
+        </div>
+        <div class="col-10">
+            <h2>Admin Panel</h2>
+
+            <!--Card-->
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/admin-page">User Table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/new">New User</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <h5>All users</h5>
+                        </li>
+                    </ul>
+                </div>
+
+
+<table class="table table-hover">
     <tr>
         <th> Id </th>
         <th> Name </th>
-        <th> Department </th>
-        <th> Salary </th>
+        <th> Email </th>
+        <th> Age </th>
         <th> Role </th>
-        <th> Operations </th>
+        <th> Operators </th>
     </tr>
-    <div th:each="user : ${user1}">
+    <div th:each="user : ${user}">
         <tr>
         <td>
             <p th:text="${user.id}"></p>
@@ -23,27 +76,39 @@
             <p th:text="${user.name}"></p>
         </td>
         <td>
-            <p th:text="${user.department}"></p>
+            <p th:text="${user.email}"></p>
         </td>
         <td>
-            <p th:text="${user.salary}"></p>
+            <p th:text="${user.age}"></p>
         </td>
         <td>
             <p th:text="${user.roles}"></p>
         </td>
-        <td>
-            <a th:href="@{/{id}/edit(id=${user.id})}"><input type="submit" class="btn btn danger" value="Edit"></a>
+<!--        <td>-->
+<!--            <a th:href="@{/{id}/edit(id=${user.id})}"><input type="submit" class="btn btn danger" value="Edit"></a>-->
 
-            <a th:href="@{/delete/{id}(id=${user.id})}"><input type="submit" class="btn btn danger" value="Delete"></a>
-        </td>
+<!--            <a th:href="@{/delete/{id}(id=${user.id})}"><input type="submit" class="btn btn danger" value="Delete"></a>-->
+<!--        </td>-->
+            <td>
+                <a th:href="@{/{id}/edit(id=${user.id})}"><button type="submit" class="btn btn-primary eBtn" data-toggle="modal"
+                        data-target="#editModal">Edit
+                    </button></a>
+            </td>
+            <!--<td><a th:href="@{user-update/{id}(id=${user.id})}"><input type="submit" class="btn btn-primary eBtn" value="Edit"></a></td>-->
+            <td>
+                <a th:href="@{/delete/{id}(id=${user.id})}"><button type="submit" class="btn btn-danger" data-toggle="modal"
+                        data-target="#deleteModal">Delete
+                </button></a>
+            </td>
         </tr>
     </div>
 
 </table>
-<a href="/new"><input type="submit" class="btn btn danger" value="Create user"></a>
+<!--<a href="/new"><input type="submit" class="btn btn danger" value="Create user"></a>-->
 <br><br>
-<form method="get" action="/logout">
-    <button class="btn btn-primary btn-block" type="submit">Logout</button>
-</form>
+<!--<form method="get" action="/logout">-->
+<!--    <button class="btn btn-primary btn-block" type="submit">Logout</button>-->
+<!--</form>-->
 </body>
 </html>
+

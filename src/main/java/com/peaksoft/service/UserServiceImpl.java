@@ -1,7 +1,7 @@
-package jam.workspace.service;
+package com.peaksoft.service;
 
-import jam.workspace.dao.UserDao;
-import jam.workspace.model.User;
+import com.peaksoft.model.User;
+import com.peaksoft.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,32 +13,32 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private  UserDao userDao;
+    private UserRepository userRepository;
 
 
     @Override
     public List<User> getAllUsers() {
-        return userDao.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public User getUserById(int id) {
-        return userDao.getById(id);
+        return userRepository.getById(id);
     }
 
     @Override
     public void deleteUserById(int id) {
-        userDao.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
     public void saveUser(User user) {
-        userDao.save(user);
+        userRepository.save(user);
     }
 
     @Override
     public User getUserByName(String name) {
-        List<User> users = userDao.findAll();
+        List<User> users = userRepository.findAll();
         for (User user : users) {
             if (user.getName().equals(name)){
                 return user;

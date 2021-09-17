@@ -1,4 +1,4 @@
-package jam.workspace.model;
+package com.peaksoft.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users1")
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id
@@ -18,17 +18,19 @@ public class User implements UserDetails {
 
     private String name;
 
+    private String surname;
+
     private String password;
 
-    private String department;
+    private String email;
 
-    private int salary;
+    private int age;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "user_role1",
-            joinColumns = @JoinColumn(name = "user_id1"),
-            inverseJoinColumns = @JoinColumn(name = "role_id1")
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new HashSet<>();
 
@@ -68,27 +70,28 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public String getDepartment() {
-        return department;
+    public String getEmail() {
+        return email;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getSalary() {
-        return salary;
+    public int getAge() {
+        return age;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public User(String name, String password, String department, int salary) {
+    public User(String name,String surname, String password, String email, int age) {
         this.name = name;
+        this.surname = surname;
         this.password = password;
-        this.department = department;
-        this.salary = salary;
+        this.email = email;
+        this.age = age;
     }
 
 

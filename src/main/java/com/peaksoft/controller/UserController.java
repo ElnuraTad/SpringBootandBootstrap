@@ -1,8 +1,8 @@
-package jam.workspace.controller;
+package com.peaksoft.controller;
 
-import jam.workspace.model.User;
-import jam.workspace.service.RoleService;
-import jam.workspace.service.UserService;
+import com.peaksoft.model.User;
+import com.peaksoft.service.RoleService;
+import com.peaksoft.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +14,12 @@ import java.util.Map;
 import java.util.Set;
 
 @Controller
-public class MyController {
+public class UserController {
 
     private final UserService userService;
     private final RoleService roleService;
 
-    public MyController(UserService userService, RoleService roleService) {
+    public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
@@ -33,7 +33,7 @@ public class MyController {
 
     @GetMapping("/admin")
     public String getAllUsers(Model model) {
-        model.addAttribute("user1", userService.getAllUsers());
+        model.addAttribute("user", userService.getAllUsers());
         return "all-users-page";
     }
 
@@ -45,12 +45,12 @@ public class MyController {
 
     @GetMapping("{id}/edit")
     public String getUserByIdForEditUser2(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user2", userService.getUserById(id));
-        model.addAttribute("roles2", roleService.getAllRoles());
+        model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("roles", roleService.getAllRoles());
         return "edit-users";
     }
     @PostMapping("/edit")
-    public String editUser(@ModelAttribute("user2") User user, @RequestParam Map<String, String> form) {
+    public String editUser(@ModelAttribute("user") User user, @RequestParam Map<String, String> form) {
         List<String> roles = roleService.getRoleNamesToList();
         Set<String> strings = new HashSet<>(roles);
         user.getRoles().clear();
@@ -65,13 +65,13 @@ public class MyController {
 
     @GetMapping("/user")
     public String getUserMethod(Principal principal, Model model) {
-        model.addAttribute("user4", userService.getUserByName(principal.getName()));
+        model.addAttribute("user", userService.getUserByName(principal.getName()));
         return "user-page";
     }
 
     @GetMapping("/new")
-    public String setUserForCreationUser(@ModelAttribute("user3") User user, Model model) {
-        model.addAttribute("role3", roleService.getAllRoles());
+    public String setUserForCreationUser(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("role", roleService.getAllRoles());
         return "new-user";
     }
 

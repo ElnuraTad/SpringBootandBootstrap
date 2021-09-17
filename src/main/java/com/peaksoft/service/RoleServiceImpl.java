@@ -1,7 +1,7 @@
-package jam.workspace.service;
+package com.peaksoft.service;
 
-import jam.workspace.dao.RoleDao;
-import jam.workspace.model.Role;
+import com.peaksoft.model.Role;
+import com.peaksoft.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +14,16 @@ import java.util.List;
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
-    private RoleDao roleDao;
+    private RoleRepository roleRepository;
 
     @Override
     public List<Role> getAllRoles() {
-        return roleDao.findAll();
+        return roleRepository.findAll();
     }
 
     @Override
     public List<String> getRoleNamesToList() {
-        List<Role> roles = roleDao.findAll();
+        List<Role> roles = roleRepository.findAll();
         List<String> names = new ArrayList<>();
         for (Role role : roles) {
             names.add(role.getRole());
@@ -33,7 +33,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role getRoleByName(String name) {
-        List<Role> roles = roleDao.findAll();
+        List<Role> roles = roleRepository.findAll();
         for (Role role : roles) {
             if (role.getRole().equals(name)) {
                 return role;
